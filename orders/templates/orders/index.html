@@ -11,6 +11,7 @@
     <div id="Regular">
       <h2>Regular</h2>
       <ol>
+        {{ menu.category }}
         {% for dish in menu %}
           {% if dish.category == "Regular Pizza"%}
             <li> {{ dish }} </li>
@@ -24,6 +25,7 @@
     <div id="Silician">
       <h2>Silician</h2>
       <ol>
+        {{ menu.fooditem }}
         {% for dish in menu %}
           {% if dish.category == "Silician Pizza"%}
             <li> {{ dish }} </li>
@@ -36,6 +38,7 @@
 
     <div id="Toppings">
       <h2>Toppings</h2>
+      {{ menu.price }}
       <ol id="top">
         {% for topping in toppings %}
           <li> {{ topping }} </li>
