@@ -11,8 +11,10 @@
     <div id="Regular">
       <h2>Regular</h2>
       <ol>
-        {% for reg in regular %}
-          <li>{{ reg }}</li>
+        {% for dish in menu %}
+          {% if dish.category == "Regular Pizza"%}
+            <li> {{ dish }} </li>
+          {% endif %}
         {% empty %}
           Nothing here
         {% endfor %}
@@ -22,52 +24,10 @@
     <div id="Silician">
       <h2>Silician</h2>
       <ol>
-        {% for sil in silician %}
-          <li>{{ sil }}</li>
-        {% empty %}
-          Nothing here
-        {% endfor %}
-      </ol>
-    </div>
-
-    <div id="Subs">
-      <h2>Subs</h2>
-      <ol>
-        {% for sub in subs %}
-          <li>{{ sub }}</li>
-        {% empty %}
-          Nothing here
-        {% endfor %}
-      </ol>
-    </div>
-
-    <div id="Pasta">
-      <h2>Pasta</h2>
-      <ol>
-        {% for pas in pasta %}
-          <li> {{ pas }} </li>
-        {% empty %}
-          Nothing here
-        {% endfor %}
-      </ol>
-    </div>
-
-    <div id="Salads">
-      <h2>Salads</h2>
-      <ol>
-        {% for salad in salads %}
-          <li>{{ salad }}</li>
-        {% empty %}
-          Nothing here
-        {% endfor %}
-      </ol>
-    </div>
-
-    <div id="DinnerPlatters">
-      <h2>DinnerPlatters</h2>
-      <ol>
-        {% for dinner in dinnerplatters %}
-          <li> {{ dinner }} </li>
+        {% for dish in menu %}
+          {% if dish.category == "Silician Pizza"%}
+            <li> {{ dish }} </li>
+          {% endif %}
         {% empty %}
           Nothing here
         {% endfor %}
@@ -76,9 +36,9 @@
 
     <div id="Toppings">
       <h2>Toppings</h2>
-      <ol>
+      <ol id="top">
         {% for topping in toppings %}
-          <li>{{ topping }}</li>
+          <li> {{ topping }} </li>
         {% empty %}
           Nothing here
         {% endfor %}

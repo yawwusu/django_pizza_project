@@ -1,11 +1,10 @@
 from django.contrib import admin
-from .models import Regular, Silician, Subs, Pasta, Salads, DinnerPlatters , Toppings
+from .models import Menu , Topping
 
 # Register your models here.
-admin.site.register(Regular)
-admin.site.register(Silician)
-admin.site.register(Subs)
-admin.site.register(Pasta)
-admin.site.register(Salads)
-admin.site.register(DinnerPlatters)
-admin.site.register(Toppings)
+admin.site.register(Menu)
+admin.site.register(Topping)
+# admin.site.register(Subs)
+# admin.site.register(Pasta)
+# admin.site.register(Salads)
+# admin.site.register(DinnerPlatters)
