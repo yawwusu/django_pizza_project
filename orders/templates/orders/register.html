@@ -1,0 +1,24 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Registration</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'orders/styles.css' %}">
+  </head>
+
+  <body>
+    <h1>Register</h1>
+
+    <form action="{% url 'success' %}" method="post">
+        {% csrf_token %}
+        <input name="firstname" type="text" placeholder="First Name"/>
+        <input name="lastname" type="text" placeholder="Last Name"/>
+        <input name="email" type="email" placeholder="name@domain.com"/>
+        <input name="username" type="text" placeholder="Username"/>
+        <input name="password" type="password" placeholder="Password"/>
+        <input type="submit" value="Register"/>
+    </form>
+    <a href="{% url 'login' %}">Already a user</a>
+  </body>
+</html>

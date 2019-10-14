@@ -1,0 +1,25 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'orders/styles.css' %}">
+  </head>
+
+  <body>
+    <h1>Login</h1>
+    {% if message %}
+        <div>
+            {{ message }}
+        </div>
+    {% endif %}
+    <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        <input name="username" type="text"/>
+        <input name="password" type="password"/>
+        <input type="submit" value="Login"/>
+    </form>
+    <a href="{% url 'register' %}">New here? Register for free</a>
+  </body>
+</html>
