@@ -5,6 +5,7 @@
   <head>
     <title>First page</title>
     <link rel="stylesheet" type="text/css" href="{% static 'orders/styles.css' %}">
+    <script type="text/javascript" src= "{% static 'orders/order.js' %}"></script>
   </head>
 
   <body>
@@ -13,38 +14,45 @@
         <li>Currently logged in as: {{ user.username }}</li>
         <li><a href="{% url 'logout' %}">Logout</a></li>
     </ul>
-    
+<form>
     <div id="Regular">
       <h2>Regular</h2>
-      <ol>
+
         {{ menu.category }}
         {% for dish in menu %}
-            <li> {{ dish }} </li>
+            <input type="checkbox"> {{ dish }} <br>
         {% empty %}
           Nothing here
         {% endfor %}
-      </ol>
-    </div>
 
+    </div>
+    <input type="submit" value="Add to Cart">
+  </form>
+
+  <form>
     <div id="Toppings">
       <h2>Toppings</h2>
-      <ol id="top">
         {% for topping in toppings %}
-          <li> {{ topping }} </li>
+          <input type="checkbox"> {{ topping }}<br>
         {% empty %}
           Nothing here
         {% endfor %}
-      </ol>
-    </div>
 
+    </div>
+    <input type="submit" value="Add to Cart">
+  </form>
+
+  <form>
 
     <div id="Orders">
       <h2>Order</h2>
-      <ol>
+
           {% for ord in orders %}
-            <li> {{ ord }} </li>
+            <input type="checkbox"> {{ ord }} <br>
           {% endfor %}
-      </ol>
+
     </div>
+    <input type="submit" value="Add to Cart">
+  </form>
   </body>
 </html>
