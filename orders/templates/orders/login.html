@@ -1,13 +1,10 @@
-{% load static %}
+{% extends "orders/base.html" %}
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'orders/styles.css' %}">
-  </head>
+{% block title %}
+    Login
+{% endblock %}
 
-  <body>
+{% block body %}
     <h1>Login</h1>
     {% if message %}
         <div>
@@ -21,5 +18,4 @@
         <input type="submit" value="Login"/>
     </form>
     <a href="{% url 'register' %}">New here? Register for free</a>
-  </body>
-</html>
+{% endblock %}

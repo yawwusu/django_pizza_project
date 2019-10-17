@@ -1,13 +1,10 @@
-{% load static %}
+{% extends "orders/base.html" %}
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Registration</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'orders/styles.css' %}">
-  </head>
+{% block title %}
+  Registration
+{% endblock %}
 
-  <body>
+{% block body %}
     <h1>Register</h1>
 
     <form action="{% url 'success' %}" method="post">
@@ -20,5 +17,4 @@
         <input type="submit" value="Register"/>
     </form>
     <a href="{% url 'login' %}">Already a user</a>
-  </body>
-</html>
+{% endblock %}

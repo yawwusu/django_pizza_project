@@ -1,58 +1,61 @@
-{% load static %}
+{% extends "orders/base.html" %}
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementbyId("order").style.display = hidden;
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>First page</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'orders/styles.css' %}">
-    <script type="text/javascript" src= "{% static 'orders/order.js' %}"></script>
-  </head>
+});
 
-  <body>
+document.getElementbyId("Maindish").onclick() = () => {
+
+    document.getElementbyId("toppings").style.display = None;
+
+}
+
+</script>
+{% block title %}
+  First page
+{% endblock %}
+
+{% block body %}
     <h1>Hello, {{ user.first_name }}</h1>
     <ul>
         <li>Currently logged in as: {{ user.username }}</li>
         <li><a href="{% url 'logout' %}">Logout</a></li>
     </ul>
+<div>
+    <a id = "order" href="{% url 'order' %}">Review and Pay</a>
+</div>
+
 <form>
-    <div id="Regular">
+    <div>
       <h2>Regular</h2>
-
-        {{ menu.category }}
-        {% for dish in menu %}
-            <input type="checkbox"> {{ dish }} <br>
-        {% empty %}
-          Nothing here
-        {% endfor %}
-
+        <select name="maindish">
+          {% for dish in menu %}
+            <option value="{{ dish.id }}">{{ dish }}</option>
+          {% empty %}
+            -----------
+          {% endfor %}
+        </select>
     </div>
-    <input type="submit" value="Add to Cart">
+    <input id="Maindish" type="submit" value="Add to Cart">
   </form>
 
-  <form>
+
+  <form action="{% url 'cart' %}" method='post'>
+    {% csrf_token %}
     <div id="Toppings">
       <h2>Toppings</h2>
-        {% for topping in toppings %}
-          <input type="checkbox"> {{ topping }}<br>
-        {% empty %}
-          Nothing here
-        {% endfor %}
-
-    </div>
-    <input type="submit" value="Add to Cart">
-  </form>
-
-  <form>
-
-    <div id="Orders">
-      <h2>Order</h2>
-
-          {% for ord in orders %}
-            <input type="checkbox"> {{ ord }} <br>
+        <select name="toppings">
+          {% for topping in toppings %}
+            <option value="{{ topping.id }}">{{ topping }}</option>
+          {% empty %}
+            ------------
           {% endfor %}
-
+      <select>
     </div>
     <input type="submit" value="Add to Cart">
   </form>
-  </body>
-</html>
+
+
+
+{% endblock %}

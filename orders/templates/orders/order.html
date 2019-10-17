@@ -1,0 +1,20 @@
+{% extends "orders/base.html" %}
+
+{% block title %}
+  Review your orders
+{% endblock %}
+
+{% block body %}
+  <h2>Your Order</h2>
+
+  <ul>
+    {% for order in orders %}
+      <li>{{ order }}</li>
+    {% empty %}
+      No order made
+    {% endfor %}
+  </ul>
+
+  <input type="submit" value="Pay">
+
+{% endblock %}

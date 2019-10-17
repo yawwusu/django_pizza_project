@@ -10,7 +10,6 @@ from .models import Serving, Category, Menu, Topping, Order
 def index(request):
     if not request.user.is_authenticated:
         return render(request, "orders/login.html", {"message": None})
-
     context = {
         "servings": Serving.objects.all(),
         "categories": Category.objects.all(),
@@ -21,8 +20,10 @@ def index(request):
     }
     return render(request, "orders/index.html", context)
 
+
 def register(request):
     return render(request, "orders/register.html")
+
 
 def success(request):
     firstname = request.POST["firstname"]
@@ -44,6 +45,27 @@ def login_view(request):
     else:
         return render(request, "orders/login.html", {"message": "Invalid credentials."})
 
+
 def logout_view(request):
     logout(request)
     return render(request, "orders/login.html", {"message": "Logged out."})
+
+
+def add_to_cart(request):
+    try:
+        menu_id = int(request.POST["maindish"])
+        menu = Menu.objects.get(pk=menu_id)
+    except KeyError:
+        return render(request, "orders/error.html", {"message": "No selection."})
+    except menu.DoesNotExist:
+        return render(request, "orders/error.html", {"message": "No such menu item."})
+    Order.add(menu)
+    # return HttpResponseRedirect(reverse("order", args=(Order_id,)))
+
+
+def order(request):
+    # Order = Order.objects.get(pk=Order_id)
+    context = {
+        "orders": Order.objects.all()
+    }
+    return render(request, "orders/order.html", context)
