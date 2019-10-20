@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Serving(models.Model):
@@ -29,10 +30,12 @@ class Menu(models.Model):
         return f"{self.category}: {self.fooditem} {self.size}  => {self.price}"
 
 class Order(models.Model):
-    order = models.ManyToManyField(Menu, blank=True, related_name="orders")
+    name = models.CharField(max_length=64)
+    # user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user")
+    menuitem = models.ManyToManyField(Menu, blank=True, related_name="order")
 
     def __str__(self):
-        return f"Order made: {Menu.fooditem} -> {Menu.price}"
+        return f"Order made by {self.name}"
 
 
 # class Subs(models.Model):

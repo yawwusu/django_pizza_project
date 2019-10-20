@@ -59,8 +59,10 @@ def add_to_cart(request):
         return render(request, "orders/error.html", {"message": "No selection."})
     except menu.DoesNotExist:
         return render(request, "orders/error.html", {"message": "No such menu item."})
-    Order.add(menu)
-    # return HttpResponseRedirect(reverse("order", args=(Order_id,)))
+    order = Order(name = request.user.first_name)
+    order.save()
+    order.menuitem.add(menu)
+    return HttpResponseRedirect(reverse("index"))
 
 
 def order(request):

@@ -1,6 +1,7 @@
 {% extends "orders/base.html" %}
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+  alert("yaw")
   document.getElementbyId("order").style.display = hidden;
 
 });
@@ -26,7 +27,9 @@ document.getElementbyId("Maindish").onclick() = () => {
     <a id = "order" href="{% url 'order' %}">Review and Pay</a>
 </div>
 
-<form>
+<form action="{% url 'cart' %}" method='post'>
+  {% csrf_token %}
+
     <div>
       <h2>Regular</h2>
         <select name="maindish">
