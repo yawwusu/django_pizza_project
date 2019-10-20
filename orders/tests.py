@@ -26,15 +26,15 @@ class OrdersTestCase(TestCase):
 
 
     def test_food_count(self):
-        a = Menu.objects.get(topping="Add1")
+        a = Topping.objects.get(topping="Add1")
         self.assertEqual(a.food.count(), 1)
 
     def test_serving_count(self):
-        a = Menu.objects.get(size="Size2")
+        a = Serving.objects.get(size="Size2")
         self.assertEqual(a.serving.count(), 1)
 
     def test_category_count(self):
-        a = Menu.objects.get(category="Cat1")
+        a = Category.objects.get(type="Cat1")
         self.assertEqual(a.category.count(), 1)
 
     # def test_valid_Order(self):
