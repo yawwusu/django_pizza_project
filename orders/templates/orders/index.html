@@ -1,47 +1,64 @@
-{% load static %}
+{% extends "orders/base.html" %}
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  alert("yaw")
+  document.getElementbyId("order").style.display = hidden;
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>First page</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'orders/styles.css' %}">
-  </head>
+});
 
-  <body>
-    <div id="Regular">
+document.getElementbyId("Maindish").onclick() = () => {
+
+    document.getElementbyId("toppings").style.display = None;
+
+}
+
+</script>
+{% block title %}
+  First page
+{% endblock %}
+
+{% block body %}
+    <h1>Hello, {{ user.first_name }}</h1>
+    <ul>
+        <li>Currently logged in as: {{ user.username }}</li>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+    </ul>
+<div>
+    <a id = "order" href="{% url 'order' %}">Review and Pay</a>
+</div>
+
+<form action="{% url 'cart' %}" method='post'>
+  {% csrf_token %}
+
+    <div>
       <h2>Regular</h2>
-      <ol>
-        {{ menu.category }}
-        {% for dish in menu %}
-            <li> {{ dish }} </li>
-        {% empty %}
-          Nothing here
-        {% endfor %}
-      </ol>
+        <select name="maindish">
+          {% for dish in menu %}
+            <option value="{{ dish.id }}">{{ dish }}</option>
+          {% empty %}
+            -----------
+          {% endfor %}
+        </select>
     </div>
+    <input id="Maindish" type="submit" value="Add to Cart">
+  </form>
 
-    <!-- <div id="Silician">
-      <h2>Silician</h2>
-      <ol>
-        {{ menu.fooditem }}
-        {% for dish in menu %}
-            <li> {{ dish }} </li>
-        {% empty %}
-          Nothing here
-        {% endfor %}
-      </ol>
-    </div> -->
 
+  <form action="{% url 'cart' %}" method='post'>
+    {% csrf_token %}
     <div id="Toppings">
       <h2>Toppings</h2>
-      {{ menu.price }}
-      <ol id="top">
-        {% for topping in toppings %}
-          <li> {{ topping }} </li>
-        {% empty %}
-          Nothing here
-        {% endfor %}
-      </ol>
+        <select name="toppings">
+          {% for topping in toppings %}
+            <option value="{{ topping.id }}">{{ topping }}</option>
+          {% empty %}
+            ------------
+          {% endfor %}
+      <select>
     </div>
-  </body>
-</html>
+    <input type="submit" value="Add to Cart">
+  </form>
+
+
+
+{% endblock %}

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Serving(models.Model):
@@ -19,7 +20,6 @@ class Topping(models.Model):
     def __str__(self):
         return f"{self.topping}"
 
-
 class Menu(models.Model):
     fooditem = models.ForeignKey(Topping, on_delete=models.CASCADE, related_name="food")
     price = models.DecimalField(decimal_places=2, max_digits=4)
@@ -28,6 +28,14 @@ class Menu(models.Model):
 
     def __str__(self):
         return f"{self.category}: {self.fooditem} {self.size}  => {self.price}"
+
+class Order(models.Model):
+    name = models.CharField(max_length=64)
+    # user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user")
+    menuitem = models.ManyToManyField(Menu, blank=True, related_name="order")
+
+    def __str__(self):
+        return f"Order made by {self.name}"
 
 
 # class Subs(models.Model):
@@ -51,11 +59,3 @@ class Menu(models.Model):
 #
 #     def __str__(self):
 #         return f"{self.food}: Price => {self.price}"
-#
-# class DinnerPlatters(models.Model):
-#     food = models.CharField(max_length=64)
-#     small = models.DecimalField(decimal_places=2, max_digits=4)
-#     large = models.DecimalField(decimal_places=2, max_digits=4)
-#
-#     def __str__(self):
-#         return f"{self.food}: Small => {self.small}  Large => {self.large}"
